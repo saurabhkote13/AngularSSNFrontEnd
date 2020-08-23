@@ -1,0 +1,104 @@
+<div class="container">
+    <h1>Enrollment For Social Security Number</h1>
+    <form [formGroup]="enroll" novalidate>
+        {{post|json}}
+        <div class="row">
+            <div class="form-group">
+                First-Name:<input type="text" class="form-control" placeholder="Enter First-Name"
+                    formControlName="fname">
+                <div class="validations"
+                    *ngIf="isSubmitted && enroll.controls['fname'].hasError('required') && (enroll.controls['fname'].touched)">
+                    First-Name is required
+                </div>
+                <div class="validations"
+                    *ngIf="enroll.controls['fname'].hasError('minlength') && (enroll.controls['fname'].touched)">
+                    First-Name must be at least 3 character in length
+                </div>
+            </div>
+            <div class="form-group">
+                Last-Name:<input type="text" class="form-control" placeholder="Enter Last-Name" formControlName="lname">
+                <div class="validations"
+                    *ngIf="isSubmitted && enroll.controls['lname'].hasError('required') && (enroll.controls['lname'].touched)">
+                    Last-Name is required
+                </div>
+                <div class="validations"
+                    *ngIf="enroll.controls['lname'].hasError('minlength') && (enroll.controls['lname'].touched)">
+                    Last-Name must be at least 3 character in length
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                Date-Of-Birth:<input type="date" class="form-control" placeholder="Enter Date Of Birth"
+                    formControlName="dob">
+                <div class="validations"
+                    *ngIf="isSubmitted && enroll.controls['dob'].hasError('required') && (enroll.controls['dob'].touched)">
+                    Date-of-Birth is required
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                Gender:
+                <input type="radio" id="male" name="gender" formControlName="gender" value="m">
+                <label for="male">Male</label>&nbsp;
+                <input type="radio" id="female" name="gender" formControlName="gender" value="f">
+                <label for="female">Female</label>&nbsp;
+                <input type="radio" id="other" name="gender" formControlName="gender" value="o">
+                <label for="other">Other</label>
+                <div class="validations"
+                    *ngIf="isSubmitted && enroll.controls['gender'].hasError('required') && (enroll.controls['gender'].touched)">
+                    Gender is required
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                State:<input type="text" formControlName="stateName">
+                <!-- <label for="stateName">Choose Your State:</label>
+                <select id="stateName">
+                    <option value="Maharashtra" id="Maharashtra" formControlName="stateName">Maharashtra</option>
+                    <option value="Jharkhand" formControlName="stateName">Jharkhand</option>
+                    <option value="Delhi" formControlName="stateName">Delhi</option>
+                    <option value="Kerala" formControlName="stateName">Kerala</option>
+                </select> -->
+                <div class="validations"
+                    *ngIf="isSubmitted && enroll.controls['stateName'].hasError('required') && (enroll.controls['stateName'].touched)">
+                    State is required
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" (click)="PostData2(enroll.value)">Submit</button>
+                <button type="reset" class="btn btn-warning">reset</button>&nbsp;&nbsp;&nbsp;
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+    </form>
+    <form [formGroup]="verify" novalidate>
+    <div class="row">
+        <h6>Verification Of Social Security Number</h6>
+        {{post3|json}}
+    </div>
+    <div class="row">
+        <div class="form-group">
+            Enter SSN:<input type="text" formControlName="ssn">&nbsp;
+        </div>
+        <div class="form-group">
+            Enter State:<input type="text" formControlName="state">
+            <!-- Select State:
+            <label for="state">Choose Your State:</label>
+            <select id="state">
+                <option value="Maharashtra" id="Maharashtra" formControlName="state">Maharashtra</option>
+                <option value="Jharkhand" formControlName="state">Jharkhand</option>
+                <option value="Delhi" formControlName="state">Delhi</option>
+                <option value="Kerala" formControlName="state">Kerala</option>
+            </select> -->
+        </div>
+    </div>
+    <div class="row">
+        <button type="submit" class="btn btn-primary" (click)="GetVerification2(verify.value)">Verify</button>
+    </div>
+    </form>
+</div>
