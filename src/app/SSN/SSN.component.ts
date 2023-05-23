@@ -15,6 +15,7 @@ export class SSNComponent {
     post: any
     post2: any
     post3: any
+	post4: any
     constructor(private cs: SSNService) {
         this.enroll = new FormGroup({
             fname: new FormControl('',[Validators.required,Validators.minLength(3)]),
